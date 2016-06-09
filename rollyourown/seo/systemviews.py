@@ -14,7 +14,9 @@ def get_seo_views(metadata_class):
     #else:
     #    return choices
 
-from django.apps.apps import get_app
+from django.apps import apps
+
+get_app = apps.get_app
 
 def get_view_names(seo_views):
     output = []
