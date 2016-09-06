@@ -54,7 +54,7 @@ class MetadataNode(template.Node):
         if not metadata:
             # Fetch the metadata
             try:
-                metadata = get_metadata(path,  context, name=self.metadata_name, **kwargs)
+                metadata = get_metadata(path,  context, name=self.metadata_name[0], **kwargs)
             except Exception, e:
                 raise template.TemplateSyntaxError(e)
 
