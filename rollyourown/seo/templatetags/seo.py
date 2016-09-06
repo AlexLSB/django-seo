@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django import template
-from rollyourown.seo import get_metadata, get_linked_metadata
+from rollyourown.seo.base import get_metadata, get_linked_metadata
 from django.template import VariableDoesNotExist
 
 register = template.Library()
@@ -83,7 +83,7 @@ def do_get_metadata(parser, token):
     metadata_name = None
     args = { 'as': None, 'for': None, 'in': None, 'on': None }
 
-    # If there are an even number of bits, 
+    # If there are an even number of bits,
     # a metadata name has been provided.
     if len(bits) % 2:
         metadata_name = bits[0]
@@ -97,12 +97,11 @@ def do_get_metadata(parser, token):
         key, value, bits = bits[0], bits[1], bits[2:]
         args[key] = value
 
-    return MetadataNode(metadata_name, 
-                variable_name = args['as'], 
-                target = args['for'], 
-                site = args['on'], 
+    return MetadataNode(metadata_name,
+                variable_name = args['as'],
+                target = args['for'],
+                site = args['on'],
                 language = args['in'])
 
 
 register.tag('get_metadata', do_get_metadata)
-
