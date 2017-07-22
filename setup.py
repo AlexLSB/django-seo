@@ -11,10 +11,10 @@ from setuptools import setup, find_packages
 
 setup(
     name = "DjangoSEO",
-    version = '1.1',
+    version = '1.2',
     packages = find_packages(exclude=["docs*", "regressiontests*"]),
     namespace_packages = ['rollyourown'],
-    requires = ['django (>=1.1)'],
+    requires = ['django (>=1.9)'],
     author = "Will Hardy",
     author_email = "djangoseo@willhardy.com.au",
     description = "A framework for managing SEO metadata in Django.",
@@ -35,4 +35,3 @@ setup(
         "Topic :: Software Development"
     ],
 )
-
