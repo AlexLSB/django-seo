@@ -5,7 +5,7 @@ def get_seo_views(metadata_class):
     return get_view_names(metadata_class._meta.seo_views)
 
     ## The following is a previous attempt to dynamically get all urls
-    ## This has a number of difficult spots, and is unnecessary when 
+    ## This has a number of difficult spots, and is unnecessary when
     ## seo_views is given
     #choices = SystemViews()
     #seo_views = get_view_names(metadata_class._meta.seo_views)
@@ -16,26 +16,26 @@ def get_seo_views(metadata_class):
 
 from django.apps import apps
 
-get_app = apps.get_app
+# get_app = apps.get_app
 
 def get_view_names(seo_views):
     output = []
-    for name in seo_views:
-        try:
-            app = get_app(name)
-        except:
-            output.append(name)
-        else:
-            app_name = app.__name__.split(".")[:-1]
-            app_name.append("urls")
-            try:
-                urls = __import__(".".join(app_name)).urls
-            except (ImportError, AttributeError):
-                output.append(name)
-            else:
-                for url in urls.urlpatterns:
-                    if url.name:
-                        output.append(url.name)
+    # for name in seo_views:
+    #     try:
+    #         app = get_app(name)
+    #     except:
+    #         output.append(name)
+    #     else:
+    #         app_name = app.__name__.split(".")[:-1]
+    #         app_name.append("urls")
+    #         try:
+    #             urls = __import__(".".join(app_name)).urls
+    #         except (ImportError, AttributeError):
+    #             output.append(name)
+    #         else:
+    #             for url in urls.urlpatterns:
+    #                 if url.name:
+    #                     output.append(url.name)
     return output
 
 from rollyourown.seo.utils import LazyChoices
